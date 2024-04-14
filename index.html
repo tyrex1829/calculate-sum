@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+</head>
+
+<script>
+
+    function populateDiv(){
+        const a = document.getElementById("firstNumber").value;
+        const b = document.getElementById("secondNumber").value;
+
+        // const element = document.getElementById("finalSum");
+        // element.innerHTML = "Final Sum : " + (parseInt(a) + parseInt(b));
+
+        fetch("https://sum-server.100xdevs.com/sum?a=" + a + "&b=" +b)
+            .then(function(response){
+                response.text()
+                    .then(function(ans){
+                        document.getElementById("finalSum").innerHTML =ans;
+                    })
+            });
+    }
+
+</script>
+
+<body>
+
+    <input type="text" placeholder="First Number" id="firstNumber" />
+    <br />
+    <input type="text" placeholder="Second Number" id="secondNumber" />
+    <br />
+    <button onclick="populateDiv()">Calculate Sum</button>  
+    <br />
+
+    <div id="finalSum"></div>
+
+</body>
+</html>
